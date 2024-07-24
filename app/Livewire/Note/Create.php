@@ -19,6 +19,7 @@ class Create extends Component
 
     public function save()
     {
+        // TODO add an auth check
         $valid = $this->validate();
 
         auth()->user()->notes()->create($valid);
