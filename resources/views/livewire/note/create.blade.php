@@ -1,8 +1,10 @@
 
 <form wire:submit.prevent="save" x-data x-on:submit.prevent="updateContent()">
-    <label for="name">Note Name</label>
-    <input type="text" wire:model="name"/>
-    <div class="mb-3">
+    <div class="flex flex-col">
+        <label class='text-gray-600' for="name">Note Name</label>
+        <input class='rounded border-gray-400' type="text" wire:model="name" id="name"/>
+    </div>
+    <div class="my-3">
         <input id="content" wire:model.live="content" type="hidden">
         <trix-editor class="trix-content" input="content"></trix-editor>
     </div>
