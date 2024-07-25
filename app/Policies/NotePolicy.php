@@ -21,7 +21,7 @@ class NotePolicy
      */
     public function view(User $user, Note $note): bool
     {
-        //
+        return $note->user()->is($user); // TODO eventually we want to share notes so you can view a public note or a shared note with your team etc etc
     }
 
     /**
@@ -29,7 +29,7 @@ class NotePolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**

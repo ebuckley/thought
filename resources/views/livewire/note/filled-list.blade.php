@@ -3,10 +3,11 @@
        <div class="p-6 flex-col space-x-2" wire:key="{{$note->id}}">
            <div class="px-2 flex-1">
                <div class="flex justify-between items-center">
-                    <div class="flex-col flex">
+                    <a href="{{ route('notes.view', ['id' => $note->id]) }}"
+                       class="flex-col flex">
                         <span class="text-gray-800 text-lg">{{$note->name}}</span>
                         <span class="text-sm text-gray-500">{{$note->created_at}}</span>
-                    </div>
+                    </a>
                    @if ($note->user->is(auth()->user()))
                        <x-dropdown>
                            <x-slot name="trigger">

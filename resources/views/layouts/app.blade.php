@@ -26,8 +26,13 @@
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <div class=" flex items-baseline gap-2 max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
+                        @if (config('app.env') != 'prod' )
+                            <span class="rounded  py-1 px-2 bg-amber-200">
+                            Env: {{config('app.env')}}
+                            </span>
+                        @endif
                     </div>
                 </header>
             @endif

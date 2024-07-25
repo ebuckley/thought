@@ -43,7 +43,12 @@
         margin-right: var(--quote-margin-start);
         padding-right: var(--quote-padding-start);
     }
-
+    ul {
+        @apply list-disc;
+    }
+    ol {
+        @apply list-decimal;
+    }
     li {
         margin-left: 1em;
     }

@@ -15,6 +15,9 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
+    Route::get('/notes/{id}', [\App\Http\Controllers\NotesController::class, 'view'])
+        ->name('notes.view');
+
     Route::get('/new', function() {
         return view('tinymce');
     });
