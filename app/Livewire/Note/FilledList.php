@@ -26,6 +26,7 @@ class FilledList extends Component
     #[On('note.updated')]
     #[On('note.created')]
     public function refreshNotes() {
+//        TODO order by most recently edited.
         $this->notes = auth()->user()->notes()->latest()->get();
         $this->editing = null;
     }
