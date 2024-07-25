@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NotesController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,10 +16,13 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/notes/{id}', [\App\Http\Controllers\NotesController::class, 'view'])
+    Route::get('/notes/{id}', [NotesController::class, 'view'])
         ->name('notes.view');
 
     Route::get('/new', function() {
         return view('tinymce');
     });
+
+    Route::get('/search', [NotesController::class, 'search'])->name('notes.search');
+
 });

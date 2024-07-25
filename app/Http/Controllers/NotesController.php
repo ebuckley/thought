@@ -15,4 +15,10 @@ class NotesController extends Controller
         $this->authorize('view', $note);
         return view('note', compact('note'));
     }
+
+    public function search(Request $request) {
+        $query = $request->query('query');
+        $notesPage = Note::search($query)->simplePaginate();
+        return view('search', compact('notesPage', 'query'));
+    }
 }
