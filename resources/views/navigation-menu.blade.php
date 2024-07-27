@@ -18,6 +18,7 @@
                     <x-nav-link href="{{ route('notes.search') }}" :active="request()->routeIs('notes.search')">
                         {{ __('Search') }}
                     </x-nav-link>
+                    <x-nav-link href="{{route('files')}}" :active="request()->routeIs('files')">{{__('Files')}}</x-nav-link>
                 </div>
             </div>
 
@@ -148,6 +149,8 @@
             <x-responsive-nav-link href="{{ route('notes.search') }}" :active="request()->routeIs('notes.search')">
                 {{ __('Search') }}
             </x-responsive-nav-link>
+
+            <x-responsive-nav-link href="{{route('files')}}" :active="request()->routeIs('files')">{{__('Files')}}</x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
