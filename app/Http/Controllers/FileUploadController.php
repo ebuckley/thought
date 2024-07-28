@@ -11,7 +11,6 @@ use Laravel\Jetstream\InteractsWithBanner;
 class FileUploadController extends Controller
 {
     use AuthorizesRequests;
-    use InteractsWithBanner;
 
     public function index(Request $request) {
 //        why is this unauth
@@ -60,8 +59,13 @@ class FileUploadController extends Controller
         return redirect()->back();
     }
 
-//    TODO we should also be able to generate a presigned url for uploading a file
+    public function uploadLink(Request $request) {
 
+        $this->authorize('create');
+        ['url' => $url, 'headers' => $headers] = Storage::temporaryUploadUrl(
+            'file.jpg', now()->addMinutes(5)
+        );
+    }
     /**
      * Link generates a presigned URL for viewing the file
      * @param $id
