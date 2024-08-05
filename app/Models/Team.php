@@ -48,4 +48,12 @@ class Team extends JetstreamTeam
     public function files(): HasMany {
         return $this->hasMany(File::class);
     }
+
+    public function assetTypes(): HasMany {
+        return $this->hasMany(AssetType::class);
+    }
+
+    public function assets():HasMany {
+        return $this->hasMany(Asset::class);
+    }
 }

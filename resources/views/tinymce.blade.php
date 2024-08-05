@@ -5,15 +5,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+
 </head>
 <body>
-<h2>Laracoding.com - TinyMCE Example</h2>
-<form action="" method="get">
-    <div class="mb-3">
-        <input id="content" value="Editor content goes here" type="hidden" name="content">
-        <trix-editor class="trix-content" input="content"></trix-editor>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+<script src="https://formbuilder.online/assets/js/form-builder.min.js"></script>
+<script src="https://formbuilder.online/assets/js/form-render.min.js"></script>
+
+<div id="fb-editor"></div>
+<script>
+    jQuery(function($) {
+        $(document.getElementById('fb-editor')).formBuilder();
+    });
+</script>
 </body>
 </html>

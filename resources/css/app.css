@@ -140,3 +140,20 @@
         }
     }
 }
+
+.asset-form {
+    h1 {
+        @apply text-2xl;
+    }
+    h2 {
+        @apply text-xl;
+    }
+}
+
+/**
+bootstrap_like for the form builder
+ */
+
+.btn {
+    @apply text-sm text-gray-600 hover:text-gray-900 underline cursor-pointer;
+}

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AssetController;
+use App\Http\Controllers\AssetTypeController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\NotesController;
 use Illuminate\Support\Facades\Route;
@@ -33,4 +35,9 @@ Route::middleware([
     Route::post('/upload', [FileUploadController::class, 'upload'])->name('files.upload');
     Route::get('/files', [FileUploadController::class, 'index'])->name('files');
 
+    Route::get('/assettype/{id}', [AssetTypeController::class, 'view'])->name('assettype.view');
+
+    Route::resource('structure', AssetTypeController::class);
+
+    Route::resource('asset', AssetController::class);
 });
