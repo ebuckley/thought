@@ -39,5 +39,17 @@ Route::middleware([
 
     Route::resource('structure', AssetTypeController::class);
 
-    Route::resource('asset', AssetController::class);
+//    Route::resource('structure.asset', AssetController::class);
+    Route::get('/structure/{asset_type}/asset', [AssetController::class, 'index'])
+        ->name('structure.asset');
+    Route::get('/structure/{asset_type}/asset/create', [AssetController::class, 'create'])
+        ->name('structure.asset.create');
+    Route::get('/structure/{asset_type}/asset/{asset}', [AssetController::class, 'show'])
+        ->name('structure.asset.show');
+    Route::get('/structure/{asset_type}/asset/{asset}/edit', [AssetController::class, 'edit'])
+        ->name('structure.asset.edit');
+    Route::delete('/structure/{asset_type}/asset/{asset}', [AssetController::class, 'destroy'])
+        ->name('structure.asset.destroy');
+
 });
+

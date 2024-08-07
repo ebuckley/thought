@@ -34,8 +34,8 @@
                             <div class="py-4">
                                 <span class="text-lg">{{$asset->name}}</span>
                                 <p>{{$asset->description}}</p>
-                                <a href="{{route('assettype.view', $asset->id)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                    Preview Form
+                                <a href="{{route('structure.asset', $asset)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                    Show
                                 </a>
                                 <a href="{{route('structure.edit', $asset->id)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                     Edit
@@ -50,8 +50,8 @@
                                 <div>
                                         <span class="text-lg">{{$asset->name}}</span>
                                         <p>{{$asset->description}}</p>
-                                    <a href="{{route('assettype.view', $asset->id)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                        Preview Form
+                                    <a href="{{route('structure.asset', $asset)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                        Show
                                     </a>
                                     <a href="{{route('structure.edit', $asset->id)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                         Edit
