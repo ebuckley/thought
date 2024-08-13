@@ -51,6 +51,6 @@ class AssetController extends Controller
     public function destroy(AssetType $asset_type, Asset $asset)
     {
         $asset->delete();
-        return view('structure.asset', [$asset_type]);
+        return redirect()->route('structure.asset', [$asset_type]);
     }
 }

@@ -22,6 +22,7 @@
                                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
+                                        <th scope="col" class="px-6 py-3"></th>
                                         <th scope="col" class="px-6 py-3">
                                             Name
                                         </th>
@@ -51,6 +52,29 @@
                                     <tbody>
                                     @foreach($assets as $asset)
                                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            <x-dropdown align="left">
+                                                <x-slot name="trigger">
+                                                    <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                                                        </svg>
+                                                    </button>
+                                                </x-slot>
+                                                <x-slot name="content">
+                                                    <x-dropdown-link href="{{route('structure.asset.edit', [$asset_type, $asset])}}">
+                                                        {{__('Edit')}}
+                                                    </x-dropdown-link>
+                                                    <x-dropdown-link x-data="" x-on:click.prevent="$refs.deleteForm.submit()">
+                                                        {{__('Delete')}}
+                                                        <form x-ref="deleteForm" method="POST" action="{{ route('structure.asset.destroy', [$asset_type, $asset]) }}" class="hidden">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
+                                                    </x-dropdown-link>
+                                                </x-slot>
+                                            </x-dropdown>
+                                        </th>
                                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             @if($asset->name)
                                                 {{$asset->name}}
