@@ -42,7 +42,7 @@ class AssetType extends Model
         }
 
         foreach ($structure as $field) {
-            if (!isset($field['type']) || !isset($field['label'])) {
+            if (!isset($field['type'])) {
                 return false;
             }
         }

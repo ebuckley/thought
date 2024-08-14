@@ -56,6 +56,31 @@ class Formbuilder extends Component
           </div>
             @script
             <script>
+                if (!window.fbControls) window.fbControls = new Array();
+                window.fbControls.push(function (controlClass) {
+                  class trixEditor extends controlClass {
+                      configure() {
+                          console.log('trix editor plugin configured')
+                      }
+                      build() {
+                          return this.markup('span', null, {id: this.config.name})
+                      }
+                      static get definition() {
+                          return {
+                              i18n: {
+                                  default: 'Rich Text Editor'
+                              }
+                          }
+                      }
+
+                      onRender() {
+                      //     do we need to do anthing?
+                      $('#' + this.config.name).text('A rich text editor goes here ' + JSON.stringify(this.config))
+                      }
+                  }
+                  controlClass.register('trixEditor', trixEditor)
+                  return trixEditor;
+                });
                 jQuery(async function($) {
                     const options = {
                       onSave: async function(evt, formData) {

@@ -65,6 +65,13 @@
                             @endif
                         </div>
                         @break
+                    @case('trixEditor')
+                         <div class="flex flex-col">
+                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$elem['label']}}</label>
+                             <input id="{{$elem['name']}}" type="hidden" name="{{$elem['name']}}"/>
+                             <trix-editor class="trix-content" input="{{$elem['name']}}" />
+                         </div>
+                    @break
                     @default
                         <span class="text-red-800 font-bold">Unknown form element type</span>
                         {{json_encode($elem)}}
