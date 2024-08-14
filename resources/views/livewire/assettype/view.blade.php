@@ -68,7 +68,7 @@
                     @case('trixEditor')
                          <div class="flex flex-col">
                              <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$elem['label']}}</label>
-                             <input id="{{$elem['name']}}" type="hidden" name="{{$elem['name']}}"/>
+                             <input id="{{$elem['name']}}" type="hidden" name="{{$elem['name']}}" value="{{$currentData[$elem['name']]}}"/>
                              <trix-editor class="trix-content" input="{{$elem['name']}}" />
                          </div>
                     @break
