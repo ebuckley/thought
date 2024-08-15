@@ -3,19 +3,22 @@
     <div class="px-4 py-3  sm:px-6">
         @foreach($assetType->structure as $elem)
             <div class="pt-1 pb-3" wire:key="{{$loop->index}}">
+                @php
+                    $label = Str::replaceLast("<br>", "", $elem['label']);
+                @endphp
                 @switch($elem['type'])
                     @case('header')
 
                         {!! '<' . $elem['subtype'] . ' class="font-semibold" >' !!}
-                        {{$elem['label']}}
+                        {{$label}}
                         {!! '</' . $elem['subtype'] . '>' !!}
                         @break
                     @case('paragraph')
-                        <p>{!!  $elem['label'] !!}</p>
+                        <p>{!!  $label !!}</p>
                         @break
                     @case('date')
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                               for="{{$loop->index}}">{{$elem['label']}}</label>
+                               for="{{$loop->index}}">{{$label}}</label>
                         <div class="relative max-w-sm">
                             <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
@@ -36,10 +39,8 @@
                         @break
                     @case('textarea')
                         <div class="flex flex-col">
-
-                            {{--                    {{json_encode($elem)}}--}}
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                   for="{{$loop->index}}">{{$elem['label']}}</label>
+                                   for="{{$loop->index}}">{{$label}}</label>
                             <textarea
                                 class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full"
                                 name="{{$elem['name']}}">{{$currentData[$elem['name']]}}</textarea>
@@ -54,7 +55,7 @@
 
                             {{--                    {{json_encode($elem)}}--}}
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                   for="{{$loop->index}}">{{$elem['label']}}</label>
+                                   for="{{$loop->index}}">{{$label}}</label>
                             <input type="{{$elem['type']}}"
                                    class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full"
                                    value="{{$currentData[$elem['name']]}}"
@@ -67,10 +68,40 @@
                         @break
                     @case('trixEditor')
                          <div class="flex flex-col">
-                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$elem['label']}}</label>
+                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$label}}</label>
                              <input id="{{$elem['name']}}" type="hidden" name="{{$elem['name']}}" value="{{$currentData[$elem['name']]}}"/>
                              <trix-editor class="trix-content" input="{{$elem['name']}}" />
                          </div>
+                    @break
+                    @case('radio-group')
+                    @php
+                    $selectedOption = "";
+                    foreach ($elem['values'] as $radio_option) {
+                        if ($radio_option['selected']) {
+                            $selectedOption = $radio_option['value'];
+                        }
+                    }
+                    if (isset($currentData[$elem['name']])) {
+                        $selectedOption = $currentData[$elem['name']];
+                    }
+
+                    @endphp
+                    <div class="flex-col flex">
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$label}}</label>
+{{--                        the options --}}
+                        <ul class="items-center w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">@foreach($elem['values'] as $i => $radio_option)
+
+                                <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                                    <div class="flex items-center ps-3">
+                                        <input name="{{$elem['name']}}" id="{{$elem['name']}}-{{$i}}" value="{{$radio_option['value']}}" type="radio"
+                                               @checked($selectedOption === $radio_option['value'])
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                        <label class = "w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="{{$elem['name']}}-{{$i}}">{{$radio_option['label']}}</label>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
                     @break
                     @default
                         <span class="text-red-800 font-bold">Unknown form element type</span>
