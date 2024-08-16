@@ -9,7 +9,6 @@
 
 {{--    Datatables TODO probably should load this a better way instead of globally..--}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link href="https://cdn.datatables.net/v/dt/dt-2.1.3/cr-2.0.3/r-3.0.2/datatables.min.css" rel="stylesheet">
     <script src="https://cdn.datatables.net/v/dt/dt-2.1.3/cr-2.0.3/r-3.0.2/datatables.min.js"></script>
 
     <!-- Fonts -->

@@ -26,6 +26,9 @@
                                         Name
                                     </th>
                                     @foreach($asset_type->structure as $elem)
+                                        @php
+                                            $label = Str::replaceLast("<br>", "", $elem['label']);
+                                        @endphp
                                         @switch($elem['type'])
                                             @case('date')
                                             @case('text')
@@ -33,7 +36,7 @@
                                             @case('radio-group')
                                             @case('trixEditor')
                                                 <th scope="col" class="px-6 py-3">
-                                                    {{$elem['label']}}
+                                                    {{$label}}
                                                 </th>
                                             @break
                                             @default
