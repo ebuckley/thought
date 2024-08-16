@@ -10,7 +10,7 @@
     <div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex flex-col gap-2 asset-form bg-white shadow-xl sm:rounded-lg">
-                <div class="px-4 py-3  sm:px-6">
+                <div class="px-4 py-3 sm:px-6 flex flex-col">
                     <div class="inline-flex rounded-md shadow-sm py-4" role="group">
                         <a href="{{route('structure.asset.create', [$asset_type])}}" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
                             Add {{$asset_type->name}}

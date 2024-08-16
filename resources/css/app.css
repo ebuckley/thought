@@ -161,14 +161,19 @@ bootstrap_like for the form builder
 
 /* Data tables */
 .dt-layout-row {
-    @apply flex justify-between pb-2;
-}
-.dt-layout-cell {
-    @apply flex;
     display: flex;
-    margin-right: auto;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
+    margin: 0.75em 0;
 }
+div.dt-container div.dt-layout-table > div {
+    display: block !important;
+}
+.dt-layout-full {
+    width: 100%;
+}
+
 .dt-length {
     @apply flex items-baseline justify-start text-sm gap-2;
 }
