@@ -7,6 +7,11 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+{{--    Datatables TODO probably should load this a better way instead of globally..--}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href="https://cdn.datatables.net/v/dt/dt-2.1.3/cr-2.0.3/r-3.0.2/datatables.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/v/dt/dt-2.1.3/cr-2.0.3/r-3.0.2/datatables.min.js"></script>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -87,7 +92,7 @@
         </div>
     </div>
 </aside>
-<div class="min-h-screen bg-gray-100">
+<div class="p-4 sm:ml-64">
 
     <!-- Page Heading -->
     @if (isset($header))
