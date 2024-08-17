@@ -79,23 +79,29 @@
                                         @endif
                                     </td>
                                     @foreach($asset_type->structure as $elem)
+                                        @php
+                                            $data = "";
+                                            if (isset($asset->data[$elem['name']])) {
+                                                $data = $asset->data[$elem['name']];
+                                            }
+                                        @endphp
                                         @switch($elem['type'])
                                             @case('date')
                                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                    {{$asset->data[$elem['name']]}}
+                                                    {{$data}}
                                                 </td>
                                                 @break
                                             @case('text')
                                             @case('textarea')
                                             @case('radio-group')
                                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                    {{$asset->data[$elem['name']]}}
+                                                    {{$data}}
                                                 </td>
                                                 @break
                                             @case('trixEditor')
                                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
 {{--                                                    TODO if it is a lot of data then maybe this isn't the way..--}}
-                                                    {!! $asset->data[$elem['name']] !!}
+                                                    {!! $data !!}
                                                 </td>
                                             @break
                                             @default
