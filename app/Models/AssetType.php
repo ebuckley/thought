@@ -21,7 +21,8 @@ class AssetType extends Model
     protected $fillable = [
         'name',
         'description',
-        'structure'
+        'structure',
+        'expiration_key'
     ];
 
     protected $casts = [

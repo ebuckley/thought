@@ -12,7 +12,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <livewire:assettype.view :assetType="$assetType"></livewire:assettype.view>
+            <livewire:assettype.asset-editor :assetType="$assetType"></livewire:assettype.asset-editor>
         </div>
     </div>
 </x-app-layout>

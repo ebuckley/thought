@@ -7,7 +7,7 @@ use App\Models\AssetType;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 
-class View extends Component
+class AssetEditor extends Component
 {
     use AuthorizesRequests;
     public ?Asset $asset;
@@ -32,6 +32,7 @@ class View extends Component
         $this->assetType = $assetType;
     }
 
+    // TODO we add isTracked to the model here, and if it is tracked then we should add the model to the expiration table
     public function save($structure) {
         if (!is_null($this->assetType)) {
             if (!isset($this->asset)) {
@@ -57,6 +58,6 @@ class View extends Component
     }
     public function render()
     {
-        return view('livewire.assettype.view');
+        return view('livewire.assettype.asseteditor');
     }
 }

@@ -13,11 +13,14 @@ class Formbuilder extends Component
     public $name = "";
     public $description = "";
     public $structure = [];
+    public $expirationKey = "";
+
     public function save() {
 
         $props = [
             'name' => $this->name,
             'description' => $this->description,
+            'expiration_key' => $this->expirationKey,
             'structure' => $this->structure,
         ];
         if (is_null($this->assetType)) {
@@ -35,6 +38,7 @@ class Formbuilder extends Component
             $this->name = $assetType->name;
             $this->description = $assetType->description;
             $this->structure = $assetType->structure;
+            $this->expirationKey = $assetType->expiration_key;
         }
     }
     public function render()
@@ -42,6 +46,8 @@ class Formbuilder extends Component
         return <<<'HTML'
         <div>
             <div class="flex flex-col gap-4">
+
+
                 <div class="flex flex-col">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="name">Name</label>
                     <input type="text" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" wire:model="name"></input>
@@ -51,11 +57,18 @@ class Formbuilder extends Component
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"> Description </label>
                     <textarea class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" placeholder="A description" wire:model="description"></textarea>
                 </div>
+                <div class="flex flex-col pb-2">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="expiration-key"> Expiration Key </label>
+                    <input id="expiration-key" type="text" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" wire:model="expirationKey" />
+                    <p id="floating_helper_text" class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                        The key that will be used for making new expirations, it should be a date key from the form structure created below</p>
+                </div>
 
                 <div id="fb-editor"></div>
           </div>
             @script
             <script>
+            console.log('running script');
                 if (!window.fbControls) window.fbControls = new Array();
                 window.fbControls.push(function (controlClass) {
                   class trixEditor extends controlClass {

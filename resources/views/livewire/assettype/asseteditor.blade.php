@@ -5,6 +5,11 @@
             <div class="pt-1 pb-3" wire:key="{{$loop->index}}">
                 @php
                     $label = Str::replaceLast("<br>", "", $elem['label']);
+                    if (isset($currentData[$elem['name']])) {
+                        $data = $currentData[$elem['name']];
+                    } else {
+                        $data = "";
+                    }
                 @endphp
                 @switch($elem['type'])
                     @case('header')
@@ -28,7 +33,7 @@
                                 </svg>
                             </div>
                             <input id="{{$loop->index}}" datepicker name="{{$elem['name']}}" type="text"
-                                   value="{{$currentData[$elem['name']]}}"
+                                   value="{{$data}}"
                                    class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                    placeholder="Select date">
                         </div>
@@ -43,7 +48,7 @@
                                    for="{{$loop->index}}">{{$label}}</label>
                             <textarea
                                 class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full"
-                                name="{{$elem['name']}}">{{$currentData[$elem['name']]}}</textarea>
+                                name="{{$elem['name']}}">{{$data}}</textarea>
                             @if(isset($elem['description']))
                                 <p id="floating_helper_text"
                                    class="mt-2 text-xs text-gray-500 dark:text-gray-400">{{$elem['description']}}</p>
@@ -58,7 +63,7 @@
                                    for="{{$loop->index}}">{{$label}}</label>
                             <input type="{{$elem['type']}}"
                                    class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full"
-                                   value="{{$currentData[$elem['name']]}}"
+                                   value="{{$data}}"
                                    name="{{$elem['name']}}"/>
                             @if(isset($elem['description']))
                                 <p id="floating_helper_text"
@@ -69,7 +74,7 @@
                     @case('trixEditor')
                          <div class="flex flex-col">
                              <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{$label}}</label>
-                             <input id="{{$elem['name']}}" type="hidden" name="{{$elem['name']}}" value="{{$currentData[$elem['name']]}}"/>
+                             <input id="{{$elem['name']}}" type="hidden" name="{{$elem['name']}}" value="{{$data}}"/>
                              <trix-editor class="trix-content" input="{{$elem['name']}}" />
                          </div>
                     @break
@@ -81,8 +86,8 @@
                             $selectedOption = $radio_option['value'];
                         }
                     }
-                    if (isset($currentData[$elem['name']])) {
-                        $selectedOption = $currentData[$elem['name']];
+                    if ($data != '') {
+                        $selectedOption = $data;
                     }
 
                     @endphp
