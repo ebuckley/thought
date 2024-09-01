@@ -38,7 +38,7 @@
                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $asset['type'] }}
                                 </td>
-                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <td data-order="{{ $asset['expiration']->timestamp }}" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $asset['expiration']->diffForHumans() }}
                                 </td>
                             </tr>
@@ -51,7 +51,8 @@
 
     <script>
         const expirationsTable = new DataTable('#expirations-table', {
-            responsive: true
+            responsive: true,
+            order: [[2, 'desc']] // order by expiration date
         });
     </script>
 </x-app-layout>

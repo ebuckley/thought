@@ -89,7 +89,12 @@ class Asset extends Model
                 'expiration' => $expirationDate,
             ];
         })
-        ->filter() // Remove null values from the collection
+        ->filter(function ($asset) {
+            return $asset !== null && $asset['expiration']->lte(now()->addWeeks(2));
+        }) // Remove null values and assets expiring after 2 weeks
+        ->sortBy(function ($asset) {
+            return $asset['expiration'];
+        }, SORT_REGULAR, true)
         ->values(); // Re-index the array
     }
 
