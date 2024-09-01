@@ -63,6 +63,12 @@
         <li>
             <x-nav-link href="{{route('files')}}" :active="request()->routeIs('files')">{{__('Files')}}</x-nav-link>
         </li>
+        <li>
+            <x-nav-link href="{{ route('expirations') }}" :active="request()->routeIs('assets.expirations')">
+                {{ __('Expirations') }}
+                <!-- Add the new link here -->
+            </x-nav-link>
+        </li>
     </ul>
     <div class="mt-5 pt-3 space-y-2 border-t border-gray-200">
         <span class="px-2 pt-4 font-semibold text-gray-500">ASSETS</span>

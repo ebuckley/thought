@@ -62,6 +62,37 @@ class Asset extends Model
         return json_decode($value, true);
     }
 
+    public static function getAssetsWithExpiration()
+    {
+        return self::whereHas('assetType', function ($query) {
+            $query->whereNotNull('expiration_key');
+        })
+        ->get()
+        ->filter(function ($asset) {
+            $expirationKey = $asset->assetType->expiration_key;
+            return isset($asset->data[$expirationKey]);
+        })
+        ->map(function ($asset) {
+            $expirationKey = $asset->assetType->expiration_key;
+            
+            try {
+                $expirationDate = \Carbon\Carbon::createFromFormat('m/d/Y', $asset->data[$expirationKey]);
+            } catch (\Exception $e) {
+                return null; // Return null if parsing fails
+            }
+
+            return [
+                'id' => $asset->id,
+                'type' => $asset->assetType->name,
+                'type_id' => $asset->assetType->id,
+                'name' => $asset->name,
+                'expiration' => $expirationDate,
+            ];
+        })
+        ->filter() // Remove null values from the collection
+        ->values(); // Re-index the array
+    }
+
 
     protected static function booted()
     {

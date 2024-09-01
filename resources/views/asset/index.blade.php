@@ -124,10 +124,8 @@
         </div>
     </div>
     <script>
-        console.log('hmmmmmm');
         const thetable = new DataTable('#asset-table', {
             responsive: true
         });
-        console.log('thetable', thetable);
     </script>
 </x-app-layout>

@@ -53,4 +53,11 @@ class AssetController extends Controller
         $asset->delete();
         return redirect()->route('structure.asset', [$asset_type]);
     }
+
+    public function listExpirations()
+    {
+        $assetsWithExpiration = Asset::getAssetsWithExpiration();
+        return view('asset.expirations', compact('assetsWithExpiration'));
+    }
+
 }

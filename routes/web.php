@@ -37,6 +37,8 @@ Route::middleware([
 
     Route::get('/assettype/{id}', [AssetTypeController::class, 'view'])->name('assettype.view');
 
+    Route::get('/expirations', [AssetController::class, 'listExpirations'])->name('expirations');
+
     Route::resource('structure', AssetTypeController::class);
 
 //    Route::resource('structure.asset', AssetController::class);
