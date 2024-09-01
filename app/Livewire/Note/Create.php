@@ -11,6 +11,8 @@ class Create extends Component
 {
     use InteractsWithBanner;
 
+    public $showCreateNoteModal = false;
+
     #[Validate('required')]
     public $name = '';
 
@@ -27,6 +29,7 @@ class Create extends Component
         $this->name = '';
         $this->dispatch('note.created');
         $this->banner("Created Note");
+        $this->showCreateNoteModal = false;
     }
     public function render(): \Illuminate\Contracts\View\View
     {

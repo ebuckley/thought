@@ -6,6 +6,11 @@ import 'flowbite';
 import $ from 'jquery';
 import 'formBuilder';
 
+import Alpine from 'alpinejs';
+import focus from '@alpinejs/focus';
+
+Alpine.plugin(focus);
+
 document.addEventListener("trix-before-initialize", () => {
     console.log('jquery version:', $.version);
     // Trix

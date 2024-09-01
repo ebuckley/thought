@@ -10,7 +10,7 @@
     </p>
 </div>
 <div class="bg-white p-6 lg:p-8 border-gray-200">
-    <livewire:note.create/>
+    <livewire:note.create />
 </div>
 <livewire:note.filled-list/>
 
