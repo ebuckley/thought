@@ -89,11 +89,13 @@
                                         </x-dropdown>
                                     </td>
                                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        @if($asset->name)
-                                            {{$asset->name}}
-                                        @else
-                                            {{$asset->id}}
-                                        @endif
+                                        <a href="{{ route('structure.asset.show', [$asset_type, $asset]) }}" class="hover:text-blue-600 hover:underline">
+                                            @if($asset->name)
+                                                {{$asset->name}}
+                                            @else
+                                                {{$asset->id}}
+                                            @endif
+                                        </a>
                                     </td>
                                     @foreach($asset_type->structure as $elem)
                                         @php
