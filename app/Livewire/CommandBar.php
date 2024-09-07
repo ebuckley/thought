@@ -50,6 +50,14 @@ class CommandBar extends Component
             const sequence = [];
             let timeout;
             window.addEventListener('keyup', (e) => {
+                // turn off the global hotkey launch system if something is focused in the app
+                if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA' || document.activeElement.tagName === 'SELECT'
+                    || document.activeElement.tagName === 'BUTTON' || document.activeElement.tagName === 'A' || document.activeElement.tagName === 'LABEL' ||
+                    document.activeElement.tagName === 'OPTION' || document.activeElement.tagName === 'DIALOG' || 
+                    document.activeElement.tagName === 'TRIX-EDITOR'
+                ) {
+                    return;
+                }
                 clearInterval(timeout);
                 const key = event.key.toLowerCase()
                 sequence.push(key)
