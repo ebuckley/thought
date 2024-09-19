@@ -4,6 +4,7 @@ use App\Http\Controllers\AssetController;
 use App\Http\Controllers\AssetTypeController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\NotesController;
+use App\Http\Controllers\PreSignupEmailController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -52,6 +53,13 @@ Route::middleware([
         ->name('structure.asset.edit');
     Route::delete('/structure/{asset_type}/asset/{asset}', [AssetController::class, 'destroy'])
         ->name('structure.asset.destroy');
+
+
+    Route::middleware([
+        \App\Http\Middleware\CheckUserEmail::class
+    ])->group(function () {
+        Route::resource('/admin/pre-signup-emails', PreSignupEmailController::class);
+    });
 
 });
 
