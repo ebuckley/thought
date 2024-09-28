@@ -99,6 +99,9 @@
                                     </td>
                                     @foreach($asset_type->structure as $elem)
                                         @php
+                                            if (!isset($elem['name'])) {
+                                                continue;
+                                            }
                                             $data = "";
                                             if (isset($asset->data[$elem['name']])) {
                                                 $data = $asset->data[$elem['name']];
