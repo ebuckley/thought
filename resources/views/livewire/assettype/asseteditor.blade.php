@@ -5,7 +5,7 @@
             <div class="pt-1 pb-3" wire:key="{{$loop->index}}">
                 @php
                     $label = Str::replaceLast("<br>", "", $elem['label']);
-                    if (isset($currentData[$elem['name']])) {
+                    if (isset($elem['name']) && isset($currentData[$elem['name']])) {
                         $data = $currentData[$elem['name']];
                     } else {
                         $data = "";

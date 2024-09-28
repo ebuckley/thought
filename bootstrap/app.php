@@ -16,5 +16,9 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        Integration::handles($exceptions);
+        // if it is not dev then use the sentry integration
+
+        if (!Application::getInstance()->environment('local')) {
+            Integration::handles($exceptions);
+        }
     })->create();
