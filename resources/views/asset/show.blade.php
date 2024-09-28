@@ -75,6 +75,9 @@
                             @case('radio-group')
                                 <p><strong>{{ $label }}:</strong> {{ $asset->data[$elem['name']] ?? 'N/A' }}</p>
                                 @break
+                            @case('number')
+                                <p><strong>{{ $label }}:</strong> {{ $asset->data[$elem['name']] ?? 'N/A' }}</p>
+                            @break
                             @default
                                 <p class="text-red-600">Unknown element type: {{ $elem['type'] }}</p>
                         @endswitch

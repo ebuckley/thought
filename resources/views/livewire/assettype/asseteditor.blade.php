@@ -108,6 +108,21 @@
                         </ul>
                     </div>
                     @break
+                    @case('number')
+                        <div class="flex flex-col">
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                   for="{{$loop->index}}">{{$label}}</label>
+                            <input type="{{$elem['type']}}"
+                                   class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full"
+                                   value="{{$data}}"
+                                   name="{{$elem['name']}}"/>
+                            @if(isset($elem['description']))
+                                <p id="floating_helper_text"
+                                   class="mt-2 text-xs text-gray-500 dark:text-gray-400">{{$elem['description']}}</p>
+                            @endif
+                        </div>
+                        @break
+                    @break
                     @default
                         <span class="text-red-800 font-bold">Unknown form element type</span>
                         {{json_encode($elem)}}
