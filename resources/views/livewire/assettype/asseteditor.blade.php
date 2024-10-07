@@ -5,14 +5,13 @@
             <div class="pt-1 pb-3" wire:key="{{$loop->index}}">
                 @php
                     $label = Str::replaceLast("<br>", "", $elem['label']);
+                    $data = '';
                     if (isset($elem['name'])) {
                         if (isset($currentData[$elem['name']]) && !empty($currentData[$elem['name']])) {
                             $data = $currentData[$elem['name']];
                         } else if (isset($elem['value'])) {
                             $data = $elem['value'];
                         }
-                    } else {
-                        $data = "";
                     }
                 @endphp
                 @switch($elem['type'])
